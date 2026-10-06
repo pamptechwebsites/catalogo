@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelato & Aventura | O Verdadeiro Sabor da Felicidade</title>
+    <!-- Google Fonts: Poppins & Fredoka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --pink-primary: #FF3B70;
+            --pink-hover: #E02B5D;
+            --yellow-vibrant: #FFD200;
+            --blue-vibrant: #00C2FF;
+            --purple-vibrant: #8A2BE2;
+            --purple-light: #F3E8FF;
+            --bg-light: #FFF9FA;
+            --text-dark: #2D232E;
+            --text-muted: #6B5E6E;
+            --white: #FFFFFF;
+            --card-shadow: 0 10px 30px rgba(255, 59, 112, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', cursive;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--pink-primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--yellow-vibrant);
+            text-shadow: 2px 2px 0px var(--pink-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--pink-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .cart-icon-btn {
+            background: var(--purple-light);
+            color: var(--purple-vibrant);
+            border: none;
+            padding: 0.7rem 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .cart-icon-btn:hover {
+            background: var(--purple-vibrant);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .cart-badge {
+            background: var(--pink-primary);
+            color: var(--white);
+            font-size: 0.8rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pink-primary), #FF6B95);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 59, 112, 0.3);
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 59, 112, 0.4);
+            background: linear-gradient(135deg, var(--pink-hover), var(--pink-primary));
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.6rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 9rem 2rem 5rem 2rem;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 210, 0, 0.15) 0%, rgba(255, 59, 112, 0.08) 50%, rgba(0, 194, 255, 0.12) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--pink-primary);
+            background: linear-gradient(45deg, var(--pink-primary), var(--purple-vibrant));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--purple-vibrant);
+            border: 2px solid var(--purple-light);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--purple-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card-img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: var(--card-shadow);
+            transform: rotate(-3deg);
+            transition: var(--transition);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-15px) rotate(-1deg); }
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: var(--white);
+            padding: 0.8rem 1.4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            animation: floatAlt 5s ease-in-out infinite;
+        }
+
+        .badge-1 { top: 10%; right: 0; }
+        .badge-2 { bottom: 5%; left: 0; }
+
+        .floating-badge i {
+            font-size: 1.5rem;
+            color: var(--yellow-vibrant);
+        }
+
+        @keyframes floatAlt {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .section-title span {
+            color: var(--pink-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+        }
+
+        .menu-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: var(--white);
+            border: 2px solid #F0E6EE;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--pink-primary);
+            color: var(--white);
+            border-color: var(--pink-primary);
+            box-shadow: 0 5px 15px rgba(255, 59, 112, 0.3);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            position: relative;
+            background-color: var(--purple-light);
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .tag-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--purple-vibrant);
+            text-transform: uppercase;
+        }
+
+        .card-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .card-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--pink-primary);
+            font-family: 'Fredoka', cursive;
+        }
+
+        .add-cart-btn {
+            background: var(--yellow-vibrant);
+            color: var(--text-dark);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .add-cart-btn:hover {
+            background: var(--pink-primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .builder-section {
+            background: linear-gradient(135deg, #FFF0F5 0%, #F3E8FF 100%);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .builder-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .builder-options h3 {
+            font-size: 1.2rem;
+            margin: 1.2rem 0 0.8rem 0;
+            color: var(--purple-vibrant);
+        }
+
+        .option-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .opt-btn {
+            background: var(--bg-light);
+            border: 2px solid #EAE0EA;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .opt-btn:hover, .opt-btn.selected {
+            border-color: var(--pink-primary);
+            background: #FFEBF0;
+            color: var(--pink-primary);
+            font-weight: 600;
+        }
+
+        .builder-summary {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px dashed #E0D0E0;
+        }
+
+        .summary-details h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .summary-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #EAE0EA;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .price-tag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Fredoka', cursive;
+        }
+
+        .price-tag span:last-child {
+            color: var(--pink-primary);
+            font-size: 1.8rem;
+        }
+
+        .about-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img-box {
+            position: relative;
+        }
+
+        .about-img-box img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--yellow-vibrant);
+            color: var(--text-dark);
+            padding: 1.5rem;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .experience-badge span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Fredoka', cursive;
+            line-height: 1;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .features-list {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .feature-item i {
+            color: var(--blue-vibrant);
+            font-size: 1.2rem;
+        }
+
+        .testimonials-section {
+            background: var(--bg-light);
+            padding: 6rem 2rem;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars {
+            color: var(--yellow-vibrant);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--purple-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--purple-vibrant);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            justify-content: flex-end;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .cart-sidebar {
+            width: 100%;
+            max-width: 450px;
+            background: var(--white);
+            height: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+        }
+
+        .modal-overlay.active .cart-sidebar {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #EAE0EA;
+        }
+
+        .close-cart-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem;
+            background: var(--bg-light);
+            border-radius: 15px;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1rem;
+        }
+
+        .cart-item-details p {
+            font-size: 0.85rem;
+            color: var(--pink-primary);
+            font-weight: 600;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 1px solid #CCC;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #EAE0EA;
+            padding-top: 1.5rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family: 'Fredoka', cursive;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 5rem 2rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--yellow-vibrant);
+        }
+
+        .footer-col p, .footer-col li {
+            color: #A093A3;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            list-style: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--pink-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #807383;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .hero-container, .builder-container, .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-img-box {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-ice-cream"></i> Gelato & Aventura
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#menu">Sabores</a></li>
+                <li><a href="#builder">Monte o Seu</a></li>
+                <li><a href="#about">Sobre Nós</a></li>
+                <li><a href="#testimonials">Depoimentos</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button class="cart-icon-btn" id="openCartBtn">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+                <a href="#menu" class="btn-primary">Peça Agora</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>O Verdadeiro Sabor da <span>Felicidade</span></h1>
+                <p>Gelatos artesanais feitos diariamente com ingredientes 100% naturais, frutas frescas e muito amor. Uma explosão de sabores vibrantes para o seu dia!</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-primary">Explorar Cardápio</a>
+                    <a href="#builder" class="btn-secondary">Monte seu Sorvete</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Sorvete Artesanal" class="hero-card-img" onerror="this.src='https://placehold.co/500x500/FF3B70/FFFFFF?text=Gelato+Delicia'">
+                <div class="floating-badge badge-1">
+                    <i class="fa-solid fa-star"></i>
+                    <div>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">Avaliação</p>
+                        <p style="font-size: 0.95rem;">4.9 (2.5k reviews)</p>
+                    </div>
+                </div>
+                <div class="floating-badge badge-2">
+                    <i class="fa-solid fa-leaf" style="color: #4CAF50;"></i>
+                    <div>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">100% Natural</p>
+                        <p style="font-size: 0.95rem;">Sem Conservantes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="section-title">
+            <span>Nossas Delícias</span>
+            <h2>Cardápio de Sabores</h2>
+        </div>
+
+        <div class="category-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="tradicionais">Tradicionais</button>
+            <button class="filter-btn" data-filter="especiais">Especiais</button>
+            <button class="filter-btn" data-filter="veganos">Veganos</button>
+            <button class="filter-btn" data-filter="tacas">Açaí & Taças</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <!-- Cards gerados dinamicamente via JS -->
+        </div>
+    </section>
+
+    <section class="builder-section" id="builder">
+        <div class="section-title">
+            <span>Experiência Interativa</span>
+            <h2>Monte Seu Sorvete Perfeito</h2>
+        </div>
+
+        <div class="builder-container">
+            <div class="builder-options">
+                <h3>1. Escolha a Base</h3>
+                <div class="option-group" id="baseOptions">
+                    <button class="opt-btn selected" data-type="base" data-name="Casquinha Crocante" data-price="4.00">Casquinha (+ R$ 4,00)</button>
+                    <button class="opt-btn" data-type="base" data-name="Copinho Pop" data-price="3.00">Copinho (+ R$ 3,00)</button>
+                    <button class="opt-btn" data-type="base" data-name="Cascão Waffle" data-price="6.00">Cascão Waffle (+ R$ 6,00)</button>
+                </div>
+
+                <h3>2. Sabores (Escolha até 3)</h3>
+                <div class="option-group" id="flavorOptions">
+                    <button class="opt-btn selected" data-type="flavor" data-name="Pistache" data-price="5.00">Pistache (+ R$ 5)</button>
+                    <button class="opt-btn" data-type="flavor" data-name="Morango Silvestre" data-price="5.00">Morango (+ R$ 5)</button>
+                    <button class="opt-btn" data-type="flavor" data-name="Chocolate Belga" data-price="5.00">Chocolate (+ R$ 5)</button>
+                    <button class="opt-btn" data-type="flavor" data-name="Ninho com Nutella" data-price="5.00">Ninho c/ Nutella (+ R$ 5)</button>
+                    <button class="opt-btn" data-type="flavor" data-name="Maracujá Vegano" data-price="5.00">Maracujá (+ R$ 5)</button>
+                </div>
+
+                <h3>3. Coberturas & Toppings</h3>
+                <div class="option-group" id="toppingOptions">
+                    <button class="opt-btn" data-type="topping" data-name="Calda de Frutas Vermelhas" data-price="2.50">Calda Frutas Vermelhas (+ R$ 2,50)</button>
+                    <button class="opt-btn" data-type="topping" data-name="Granulado Colorido" data-price="1.50">Granulado (+ R$ 1,50)</button>
+                    <button class="opt-btn" data-type="topping" data-name="Chantilly Premium" data-price="3.00">Chantilly (+ R$ 3,00)</button>
+                    <button class="opt-btn" data-type="topping" data-name="Castanhas Crocantes" data-price="2.00">Castanhas (+ R$ 2,00)</button>
+                </div>
+            </div>
+
+            <div class="builder-summary">
+                <div class="summary-details">
+                    <h4>Resumo da Criação</h4>
+                    <ul class="summary-list" id="summaryList">
+                        <!-- Preenchido via JS -->
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="price-tag">
+                        <span>Total Estimado:</span>
+                        <span id="customTotalPrice">R$ 9,00</span>
+                    </div>
+                    <button class="btn-primary" style="width: 100%;" id="addCustomToCart">Adicionar Personalizado</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-grid">
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=600&q=80" alt="Nossa Produção" onerror="this.src='https://placehold.co/600x400/8A2BE2/FFFFFF?text=Producao+Artesanal'">
+                <div class="experience-badge">
+                    <span>10+</span>
+                    <p>Anos de Tradição</p>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <div class="section-title" style="text-align: left; margin: 0 0 1.5rem 0;">
+                    <span>Nossa História</span>
+                    <h2>Feito com Paixão e Ingredientes Selecionados</h2>
+                </div>
+                <p>A <strong>Gelato & Aventura</strong> nasceu do sonho de transformar momentos simples em lembranças inesquecíveis. Desde 2014, criamos gelatos e sobremesas de forma totalmente artesanal.</p>
+                <p>Nossas receitas combinam a autêntica tradição italiana de fazer gelato com o toque vibrante de frutas tropicais brasileiras frescos e selecionados diariamente.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Leite Fresco Local</div>
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Sem Aromatizantes Syntéticos</div>
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Opções Veganas & Zero Açúcar</div>
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Produção Diária</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-title">
+            <span>Depoimentos</span>
+            <h2>O Que Nossos Clientes Dizem</h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"O gelato de pistache é simplesmente inacreditável! A textura é incrivelmente cremosa e o atendimento é impecável. Virou meu ponto fixo dos fins de semana."</p>
+                <div class="user-info">
+                    <div class="user-avatar">CS</div>
+                    <div>
+                        <h4 style="font-size: 1rem;">Camila Silva</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Cliente Frequente</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Adorei as opções veganas! É super difícil achar um sorvete vegano de qualidade tão alta como o de Maracujá com Manjericão daqui. Sensacional!"</p>
+                <div class="user-info">
+                    <div class="user-avatar">RO</div>
+                    <div>
+                        <h4 style="font-size: 1rem;">Rafael Oliveira</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Guia Local</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"A Taça Aventura é uma obra de arte! Além de linda para tirar fotos, é absurdamente deliciosa. As crianças ficaram apaixonadas pelo ambiente."</p>
+                <div class="user-info">
+                    <div class="user-avatar">MA</div>
+                    <div>
+                        <h4 style="font-size: 1rem;">Mariana Andrade</h4>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Mãe e Blogger</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="cartModal">
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Seu Pedido</h3>
+                <button class="close-cart-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Itens adicionados aparecem aqui -->
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalValue">R$ 0,00</span>
+                </div>
+                <button class="btn-primary" style="width: 100%;" id="checkoutBtn">Finalizar Pedido Simulado</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo" style="color: var(--white); margin-bottom: 1rem;">
+                    <i class="fa-solid fa-ice-cream"></i> Gelato & Aventura
+                </a>
+                <p>Criando sorrisos e momentos doces todos os dias com o melhor gelato artesanal da cidade.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Horários</h3>
+                <ul>
+                    <li>Segunda - Quinta: 12h às 22h</li>
+                    <li>Sexta - Sábado: 12h às 23h30</li>
+                    <li>Domingo: 13h às 22h</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Av. das Delícias, 1000 - Centro</li>
+                    <li><i class="fa-solid fa-phone"></i> (11) 99999-8888</li>
+                    <li><i class="fa-solid fa-envelope"></i> oi@gelatoeaventura.com.br</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gelato & Aventura. Todos os direitos reservados. Projeto fictício para demonstração.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados do Cardápio
+        const menuItems = [
+            {
+                id: 1,
+                name: "Pistache Supremo",
+                category: "especiais",
+                price: 18.00,
+                desc: "Autêntico pistache italiano selecionado com pedaços crocantes.",
+                img: "https://images.unsplash.com/photo-1580711568267-3e81881b2138?auto=format&fit=crop&w=400&q=80",
+                badge: "Mais Vendido"
+            },
+            {
+                id: 2,
+                name: "Morango Silvestre",
+                category: "tradicionais",
+                price: 14.00,
+                desc: "Sorbet refrescante feito com morangos naturais frescos.",
+                img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=400&q=80",
+                badge: "Refrescante"
+            },
+            {
+                id: 3,
+                name: "Chocolate Belga 70%",
+                category: "tradicionais",
+                price: 16.00,
+                desc: "Intenso chocolate cacau nobre com raspas artesanais.",
+                img: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=400&q=80",
+                badge: "Clássico"
+            },
+            {
+                id: 4,
+                name: "Maracujá c/ Manjericão",
+                category: "veganos",
+                price: 15.00,
+                desc: "combinação cítrica e exótica totalmente à base de plantas.",
+                img: "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?auto=format&fit=crop&w=400&q=80",
+                badge: "Vegano"
+            },
+            {
+                id: 5,
+                name: "Taça Aventura Supreme",
+                category: "tacas",
+                price: 28.00,
+                desc: "3 bolas, brownie, chantilly, calda quente e granulado colorido.",
+                img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80",
+                badge: "Especial"
+            },
+            {
+                id: 6,
+                name: "Açaí Tropical Power",
+                category: "tacas",
+                price: 22.00,
+                desc: "Açaí puro com banana, morango, granola crocante e leite em pó.",
+                img: "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=400&q=80",
+                badge: "Energia"
+            }
+        ];
+
+        // Estado da Aplicação
+        let cart = [];
+        let customIceCream = {
+            base: { name: "Casquinha Crocante", price: 4.00 },
+            flavors: [{ name: "Pistache", price: 5.00 }],
+            toppings: []
+        };
+
+        // Elementos DOM
+        const menuGrid = document.getElementById('menuGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cartModal = document.getElementById('cartModal');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotalValue = document.getElementById('cartTotalValue');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        function renderMenu(category = 'all') {
+            menuGrid.innerHTML = '';
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <span class="tag-badge">${item.badge}</span>
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/400x300/FF3B70/FFFFFF?text=${encodeURIComponent(item.name)}'">
+                    </div>
+                    <div class="card-info">
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        <button class="add-cart-btn" onclick="addToCart('${item.name}', ${item.price})">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                `;
+                menuGrid.appendChild(card);
+            });
+        }
+
+        // Filtro de Categorias
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderMenu(btn.dataset.filter);
+            });
+        });
+
+        function setupBuilderEvents() {
+            const baseBtns = document.querySelectorAll('#baseOptions .opt-btn');
+            const flavorBtns = document.querySelectorAll('#flavorOptions .opt-btn');
+            const toppingBtns = document.querySelectorAll('#toppingOptions .opt-btn');
+
+            baseBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    baseBtns.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    customIceCream.base = {
+                        name: btn.dataset.name,
+                        price: parseFloat(btn.dataset.price)
+                    };
+                    updateBuilderSummary();
+                });
+            });
+
+            flavorBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const name = btn.dataset.name;
+                    const price = parseFloat(btn.dataset.price);
+
+                    if (btn.classList.contains('selected')) {
+                        btn.classList.remove('selected');
+                        customIceCream.flavors = customIceCream.flavors.filter(f => f.name !== name);
+                    } else {
+                        if (customIceCream.flavors.length < 3) {
+                            btn.classList.add('selected');
+                            customIceCream.flavors.push({ name, price });
+                        } else {
+                            alert("Você pode escolher no máximo 3 sabores!");
+                        }
+                    }
+                    updateBuilderSummary();
+                });
+            });
+
+            toppingBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const name = btn.dataset.name;
+                    const price = parseFloat(btn.dataset.price);
+
+                    if (btn.classList.contains('selected')) {
+                        btn.classList.remove('selected');
+                        customIceCream.toppings = customIceCream.toppings.filter(t => t.name !== name);
+                    } else {
+                        btn.classList.add('selected');
+                        customIceCream.toppings.push({ name, price });
+                    }
+                    updateBuilderSummary();
+                });
+            });
+
+            document.getElementById('addCustomToCart').addEventListener('click', () => {
+                const totalPrice = calculateCustomTotal();
+                const title = `Sorvete Personalizado (${customIceCream.base.name})`;
+                addToCart(title, totalPrice);
+            });
+        }
+
+        function calculateCustomTotal() {
+            let total = customIceCream.base.price;
+            customIceCream.flavors.forEach(f => total += f.price);
+            customIceCream.toppings.forEach(t => total += t.price);
+            return total;
+        }
+
+        function updateBuilderSummary() {
+            const summaryList = document.getElementById('summaryList');
+            const customTotalPrice = document.getElementById('customTotalPrice');
+
+            summaryList.innerHTML = '';
+
+            // Base
+            summaryList.innerHTML += `<li><span>Base: ${customIceCream.base.name}</span> <span>R$ ${customIceCream.base.price.toFixed(2).replace('.', ',')}</span></li>`;
+
+            // Sabores
+            if (customIceCream.flavors.length > 0) {
+                const flavorNames = customIceCream.flavors.map(f => f.name).join(', ');
+                const flavorTotal = customIceCream.flavors.reduce((sum, f) => sum + f.price, 0);
+                summaryList.innerHTML += `<li><span>Sabores: ${flavorNames}</span> <span>R$ ${flavorTotal.toFixed(2).replace('.', ',')}</span></li>`;
+            } else {
+                summaryList.innerHTML += `<li><span style="color:red;">Escolha pelo menos 1 sabor</span></li>`;
+            }
+
+            // Coberturas
+            if (customIceCream.toppings.length > 0) {
+                const toppingNames = customIceCream.toppings.map(t => t.name).join(', ');
+                const toppingTotal = customIceCream.toppings.reduce((sum, t) => sum + t.price, 0);
+                summaryList.innerHTML += `<li><span>Toppings: ${toppingNames}</span> <span>R$ ${toppingTotal.toFixed(2).replace('.', ',')}</span></li>`;
+            }
+
+            const total = calculateCustomTotal();
+            customTotalPrice.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            openCart();
+        }
+
+        function updateCartQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Atualizar badge
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartCount.textContent = totalQty;
+
+            // Renderizar itens
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `<p style="text-align:center; color: var(--text-muted); margin-top:2rem;">Seu carrinho está vazio 🍦</p>`;
+            } else {
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.qty;
+                    total += itemTotal;
+
+                    const cartItemEl = document.createElement('div');
+                    cartItemEl.className = 'cart-item';
+                    cartItemEl.innerHTML = `
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <p>R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="updateCartQty(${index}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemEl);
+                });
+            }
+
+            cartTotalValue.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        // Modal Controls
+        function openCart() { cartModal.classList.add('active'); }
+        function closeCart() { cartModal.classList.remove('active'); }
+
+        openCartBtn.addEventListener('click', openCart);
+        closeCartBtn.addEventListener('click', closeCart);
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) closeCart();
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio!");
+                return;
+            }
+            alert("Pedido simulado enviado com sucesso! Obrigado por experimentar a Gelato & Aventura 🎉");
+            cart = [];
+            updateCartUI();
+            closeCart();
+        });
+
+        // Toggle Menu Mobile
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Inicialização
+        window.onload = function() {
+            renderMenu();
+            setupBuilderEvents();
+            updateBuilderSummary();
+        };
+    </script>
+</body>
+</html>
